@@ -1,0 +1,15 @@
+#Go to the repository which you intend to add
+
+git init
+git add .
+commit -m "Comments"
+
+git remote add origin REMOTE_URL
+git remote -v
+
+#up till not, the instructions are used to initialize a local directory as Github.
+
+git push origin master
+
+To Sync up:
+git pull REMOTE_URL
