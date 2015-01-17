@@ -1,0 +1,28 @@
+GCC = g++
+SRC = main.cpp
+FLAG += -std=c++0x
+vpath %.hpp relacy_2_4/relacy
+OBJ = $(addprefix ./obj/, $(SRC:%.cpp=%.o))
+INC_HEADER = -I./relacy_2_4/
+LIB        = -L./
+ 
+EXEC_PATH = debug
+ 
+.PHONY: build
+ 
+build: $(OBJ) print
+        mkdir -p ./obj
+        mkdir -p ./debug
+        $(GCC)  -g $(FLAG)  $(INC_HEADER) $(LIB) -o ./debug/$@   $(OBJ)
+ 
+print:
+        $(shell echo "$(FLAG)")
+ 
+./obj/%.o: %.cpp
+        mkdir -p $(dir $@)
+        $(GCC) -g -c  $(FLAG)  $(INC_HEADER) -o $@ $<            #LIB not included here!
+ 
+.PHONY: clean
+clean:
+        rm -rf ./obj/*.o
+        rm -rf ./debug/*
